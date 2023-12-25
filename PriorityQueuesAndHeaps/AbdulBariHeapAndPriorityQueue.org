@@ -1,0 +1,108 @@
+#+title: Heap And Priority Queue
+#+author: Bedaprakash Nayak
+#+date: <2023-12-25 Mon>
+** Representation of a Binary Tree
+The array representation of a binary tree can be done using following formula.
+
+#+begin_src text
+If Node is at index    - i
+It's left child is at  - 2 * i
+It's right child is at - 2 * i + 1
+It's parent is at      - i / 2
+
+[A, B, C, D, E, F, G]
+Parent A - Child B, C
+Parent B - Child D, E
+Parent C - Child F, G
+#+end_src
+
+If during the representation there are elements which are not present to be a child of the parent then we should keep the place blank to follow above rule.
+
+*** Full Binary Tree
+If a binary tree with height ~h~ is is having all the possible nodes filled up then it is called as *Full Binary Tree*. A Binary Tree having height ~h~ can have ~2^h+1 - 1~ number of nodes.
+
+*** Complete Binary Tree
+When you represent a complete binary tree in an array there is no empty space in the array. Every full binary tree is a complete binary tree.
+
+Alternatively a complete binary tree of height ~h~ is a full binary tree upto height ~h - 1~.
+
+The height of a complete binary tree is minimum and that is always ~logn~
+** Heap
+A heap is a complete binary tree.
+
+*** Max Heap
+If the root is having maximum or larger value than it's decendants. Then it is called as the *Max Heap*.
+
+Example: ~[50, 30, 20, 15, 10, 8, 16]~
+
+*** Min Heap
+If the root is having the minimum or smaller value than it's decendants. Then it is called as *Min Heap*.
+
+Example: ~[10, 30, 20, 35, 40, 32, 25]~
+
+*** Inserting an element in Heap
+Given a heap ~[50, 30, 20, 15, 10, 8, 25]~ insert an elment ~60~ into it.
+
+**** Approach
+- Start inserting the element at the end of the array that is maintaining the structure of the complete binary tree.
+- Then start comparing the inserted node with the parent that is present at ~i / 2~, where ~i~ is the inserted place.
+- If the inserted node is greater than the parent then swap it.
+- Continue this operation untill the inserted node is at it's correct position.
+- The direction of insertion swaps during insertion is upwards.
+
+*Time Complexity:*
+Time taken to insert an element to the heap is the time taken to perfrom all the swaps if the inserted element is greater than it's parent. Maximum number of swaps that can be done is the height of the binary tree that is ~O(logn)~. If the element inserted is already at his correct position then it is ~O(1)~. Thus the time complexity is ~O(1) to O(logn)~.
+
+*** Deleting an element in Heap
+Deleting an element from the heap can be only performed to the root of the tree. A great example is a fruit market apple structure. We can take the top most apple. In this case given ~[50, 30, 20, 15, 10, 8, 16]~ we can remove the top of the heap which is ~50~.
+
+**** Approach
+- Delete the top root element.
+- Replace the root element with the last leaf of the tree. That is ~16~ in this case. This is because we need to maintain the structure of a complete binary tree.
+- Then compare the children inbetween to find the greater one and then compare the greater one with parent. In this case it is ~30~ compared with ~16~.
+- Swap if the child is greater than the parent to main the heap property.
+- In array to find the greater child of the new parent we can do by comparing ~i * 2~ and ~i * 2 + 1~ elements.
+- In deletion the direction of swapping is downwards.
+
+*Time Complexity:*
+Time taken to delete an elemetn from the heap the time taken to perform all the swap to position the new root at it correct place. Maximum number of swaps that can be done is the height of the binary tree that is ~O(logn)~.
+
+**** Important Idea (Heap Sort)
+While deleting the elements we can store those elements at the last postition of the array which indeed is empty if the element is deleted. If we keep on deleting elements from a max heap and store them in the empty space at the end. Then at the very end we will have a sorted array. This is the main idea behind the *Heap Sort*.
+
+*** Heap Sort
+Heap sort can be performed involving two steps.
+- Creating the heap from the given elements. -> [[https://youtu.be/HqPJF2L5h9U?list=PLAXnLdrLnQpRcveZTtD644gM9uzYqJCwr&t=1863][Demonstration]]
+- Deleting the elements from the heap one by one. -> [[https://youtu.be/HqPJF2L5h9U?list=PLAXnLdrLnQpRcveZTtD644gM9uzYqJCwr&t=2181][Demonstration]]
+
+**** Approach
+- *Creating the Heap:*
+  - Start creating a heap from the given elements ~[10, 20, 15, 30, 40]~.
+  - Consider that ~10~ or the first element is already there in heap as root.
+  - Start inserting next elements.
+  - If the inserted element is greater than the root node then swap it.
+  - Total time to create an heap from ~n~ given elements is ~n * time taken for one insert operation(logn)~ which is ~O(nlogn)~
+- *Deleting elements:*
+  - Start deleting the root node form the heap that has been crated.
+  - Swap the last element from with the root so that we can store the root at the last position.
+  - Now compare teh new root with the greater leaf node and swap if required.
+  - Repeat this process until there is no elements left in the heap.
+  - Total time taken to remove all teh elements from the heap is also ~O(nlogn)~
+- *Time Complexity:*
+  - The total time complexity of the heap sort is ~nlogn + nlogn = 2nlogn~ which is eventually equal to ~nlogn~.
+
+*** Heapify
+The process of converting a binary tree into a heap is called as *heapify*.
+
+**** Approach
+- Start scanning the given tree array from the right to left.
+- Check if there is a greater child than the parent.
+- If there is a child which is greater than the parent then swap them.
+- Perform this operation untill max heap is formed.
+- Time taken to perform all the operation is ~O(n)~, where n is the number of elements present in the array.
+- [[https://youtu.be/HqPJF2L5h9U?list=PLAXnLdrLnQpRcveZTtD644gM9uzYqJCwr&t=2532][Demonstration]]
+
+** Priority Queue
+It is a data structure where the deletion and insertion happens based on the priority of the elements. If the minimum value is having the higher priority then it is called as ascending-priority queue. If the higher value is is having higher priority then it is called as descending-priority queue.
+
+Heap is the best way to implement the Priority queues based on the requirements. As it takes ~O(logn)~ time for insertion and deletion of new elements compared to ~O(n)~ for the normal array representation of the priority queue.

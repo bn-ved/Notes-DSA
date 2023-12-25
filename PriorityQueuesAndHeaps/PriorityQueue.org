@@ -1,0 +1,36 @@
+#+title: Priority Queue
+#+author: Bedaprakash Nayak
+#+date: <2023-12-24 Sun>
+** What is a Priority Queue ?
+A priority queue is a type of queue that arranges elements based on their priority values. Elements with higher priority values are typically retrieved before elements with lower priority values. Priority queue ADT is a data structure that supports the operations like ~insert~ and ~deleteMin~ or ~deleteMax~.
+
+A priority queue is called an ascending - priority queue, if the item with the smallest key has the highest priority (that means, delete the smallest element always.). Similarly, a priority queue is said to be descending-priority queue if the item with the alrgest key has the highest priority(delete teh maximum element always).
+
+Insertion and removal takes ~O(logn)~ time, and retrieval takes ~O(1)~ time.
+
+*** Main Priority Queue Operations
+A priority queue is container of elements, each having an associated key.
+- ~insert(key, data)~: inserts ~data~ with ~key~ to the priority queue. Elements are ordered based on key.
+- ~deleteMin() / deleteMax()~: removes and return the element with the smallest/largest key.
+- ~getMinimum() / getMaximum()~: returns the element with the smallest/largest key without deleting it.
+
+*** Auxiliary Priority Queues Operations
+- kth - smallest / kth largest: returns the kth - smallest / kth - largest key in priority queue.
+- ~size()~: Returns number of elements in priority queue.
+- ~sort()~: sorts the elements in the priority queue based on priority (key).
+
+*** Priority Queue Applications
+Priority queues have many applications - a few of them are listed below:
+- Data compression: Huffman Coding algorithm
+- Shortest path algorithm: Dijkstra's algorithm
+- Minimum spanning tree algorithms: Prim's algorithm
+- Event-driven simulation: customers in a line
+- Selection problem: Finding kth - smallest element
+
+** What is a Heap ?
+A heap is a tree with some special properties. The basic requirement of heap is that the value of a node must be >= (or <=) than the values of its children. This is called heap property.
+
+*** Types of Heaps ?
+Based on the property of a heap we can classify heaps into two types:
+- *Min Heap:* The value of a node must be less than or equal to the value of its children.
+- *Max Heap:* The value of a node must be greater than or equal to the values of its childern.
